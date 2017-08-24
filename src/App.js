@@ -14,12 +14,31 @@ class BooksApp extends React.Component {
     BooksAPI.getAll().then((books) => this.setState({ books }))
   }
 
+
+// createContact = (contact) => {
+//     ContactsAPI.create().then((contacts) => {
+//       this.setState((state) => ({
+//         contacts: state.contacts.concat([ contact ])
+//         }))
+//       })
+//     }
+
+  updateList = (book, shelf) => {
+    BooksAPI.update(book, shelf).then((books) => {
+      this.setState(({books}))
+    })
+  }
+
+
   render() {
     return (
       <div className="app">
 
         <Route exact path="/" render={() => (
-          <BookList />
+          <BookList
+            books={this.state.books}
+            onUpdateList={(book, shelf) => this.updateList(book, shelf)}
+          />
         )} />
 
         <Route path="/search" render={() => (
