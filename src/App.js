@@ -2,7 +2,7 @@ import React from 'react'
 import * as BooksAPI from './BooksAPI'
 import { Route } from 'react-router-dom'
 import BookList from './BookList'
-import SearchBooks from './SearchBooks'
+import Search from './Search'
 import './App.css'
 
 class BooksApp extends React.Component {
@@ -33,7 +33,7 @@ class BooksApp extends React.Component {
         )} />
 
         <Route path="/search" render={() => (
-          <SearchBooks />
+          <Search />
         )} />
 
       </div>
