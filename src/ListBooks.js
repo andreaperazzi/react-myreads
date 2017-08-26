@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Book from './Book'
 
-function ListBook({books, handleBookshelfChange}) {
+function ListBooks({books, handleBookshelfChange}) {
 
   const shelves = ['currentlyReading', 'wantToRead', 'read']
 
@@ -25,6 +25,7 @@ function ListBook({books, handleBookshelfChange}) {
                 .map( (book) =>
                   <Book
                     key={book.id}
+                    books={books}
                     book={book}
                     handleBookshelfChange={handleBookshelfChange}
                   />
@@ -42,4 +43,4 @@ function ListBook({books, handleBookshelfChange}) {
   )
 }
 
-export default ListBook
+export default ListBooks

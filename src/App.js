@@ -1,7 +1,7 @@
 import React from 'react'
 import * as BooksAPI from './BooksAPI'
 import { Route } from 'react-router-dom'
-import BookList from './BookList'
+import ListBooks from './ListBooks'
 import Search from './Search'
 import './App.css'
 
@@ -16,26 +16,36 @@ class BooksApp extends React.Component {
 
   handleBookshelfChange = (book, shelf) => {
     BooksAPI.update(book, shelf).then(() => {
+
+      // Set the shelf for the book
       book.shelf = shelf
-      this.setState( state => state )
+
+      // Get the actual lis of the books
+      const updatedBooks = this.state.books.filter( b => b.id !== book.id)
+
+      // Add the new book to the list
+      updatedBooks.push(book)
+      this.setState({books: updatedBooks})
     })
   }
 
   render() {
+    const { books } = this.state
     return (
       <div className="app">
-
         <Route exact path="/" render={() => (
-          <BookList
-            books={this.state.books}
+          <ListBooks
+            books={books}
             handleBookshelfChange={this.handleBookshelfChange}
           />
         )} />
 
         <Route path="/search" render={() => (
-          <Search />
+          <Search
+            books={books}
+            handleBookshelfChange={this.handleBookshelfChange}
+           />
         )} />
-
       </div>
     )
   }
