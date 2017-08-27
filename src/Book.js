@@ -2,7 +2,7 @@ import React from 'react'
 
 function Book({book, books, handleBookshelfChange}) {
 
-  const { imageLinks, title, authors} = book
+  const { imageLinks, title, authors, publisher } = book
 
   // set current shelf to none as default
   let currentShelf = 'none'
@@ -30,9 +30,7 @@ function Book({book, books, handleBookshelfChange}) {
           </div>
         </div>
         <div className="book-title">{title}</div>
-          {authors && authors.map( author =>
-            <div key={author} className="book-authors">{author}</div>
-          )}
+        <div className="book-authors">{authors ? authors.join(', ') : publisher}</div>
       </div>
     </li>
   )
