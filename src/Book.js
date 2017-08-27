@@ -8,11 +8,11 @@ function Book({book, books, handleBookshelfChange}) {
   let currentShelf = 'none'
 
   // if book is already in a shelf, set currentShelf to book.shelf
-  for (let item of books ) {
-    if (item.id === book.id) {
+  books.map( item =>
+    item.id === book.id && (
       currentShelf = item.shelf
-    }
-  }
+    )
+  )
 
   return (
     <li>
